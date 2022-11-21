@@ -1,0 +1,128 @@
+{% extends "layout.html" %} {% block content %}
+<h2>Disease Table</h2>
+
+<div class="container">
+    <div class="row" style="padding-bottom: 10px; padding-top: 20px">
+        <div class="col-2"><b>Disease Code</b></div>
+        <div class="col"><b>Pathogen</b></div>
+        <div class="col"><b>Description</b></div>
+
+        <div class="col-1"><b>ID</b></div>
+
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+    </div>
+    <form action="/disease" method="post">
+        <div class="row" style="padding-bottom: 2px">
+            <div class="col-2">
+                <input 
+                    type="text" 
+                    name="disease_code" 
+                    value="" 
+                    style="box-sizing: border-box; width: 100%"
+                />
+            </div>
+
+            <div class="col">
+                <input type="text" name="pathogen" value="" />
+            </div>
+
+            <div class="col">
+                <textarea
+                    type="text"
+                    name="description"
+                    rows="4"
+                    maxlength="140"
+                    style="width: 100%; height: 100%; resize: none;"
+                ></textarea>
+            </div>
+
+            <div class="col-1">
+                <input 
+                    type="text" 
+                    name="id" 
+                    value="" 
+                    style="box-sizing: border-box; width: 100%"
+                />
+            </div>
+
+            <div class="col-2">
+                <button
+                    type="submit"
+                    class="btn btn-outline-success btn-block"
+                    value="insert"
+                    name="action"
+                >
+                    Insert
+                </button>
+            </div>
+        </div>
+    </form>
+    {% for row in rows %}
+    <form action="/disease" method="post">
+        <div class="row" style="padding-bottom: 2px">
+            <div class="col-2">
+                <input type="hidden" name="oldRow" value="{{row}}" />
+                <input 
+                    type="text" 
+                    name="disease_code" 
+                    value="{{row['disease_code']}}" 
+                    style="box-sizing: border-box; width: 100%"
+                />
+            </div>
+
+            <div class="col">
+                <input
+                    type="text"
+                    name="pathogen"
+                    value="{{row['pathogen']}}"
+                />
+            </div>
+
+            <div class="col">
+                <textarea
+                    type="text"
+                    name="description"
+                    rows="4"
+                    maxlength="140"
+                    style="width: 100%; height: 100%; resize: none;"
+                >{{row['description']}}</textarea>
+            </div>
+
+            <div class="col-1">
+                <input 
+                    type="text" 
+                    name="id" 
+                    value="{{row['id']}}" 
+                    style="box-sizing: border-box; width: 100%"
+                />
+            </div>
+
+            <div class="col-1" style="padding-right: 10px">
+                <button
+                    type="submit"
+                    class="btn btn-outline-primary btn-block"
+                    value="edit"
+                    name="action"
+                >
+                    Edit
+                </button>
+            </div>
+
+            <div class="col-1" style="padding-left: 5px">
+                <button
+                    type="submit"
+                    class="btn btn-outline-danger"
+                    
+                    value="delete"
+                    name="action"
+                >
+                    Delete
+                </button>
+            </div>
+        </div>
+    </form>
+    {% endfor %}
+</div>
+
+{% endblock content %}

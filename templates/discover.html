@@ -1,0 +1,90 @@
+{% extends "layout.html" %} {% block content %}
+<h2>Discover Table</h2>
+
+<div class="container">
+    <div class="row" style="padding-bottom: 10px; padding-top: 20px">
+        <div class="col"><b>Country</b></div>
+        <div class="col"><b>Disease Code</b></div>
+        <div class="col"><b>First Encounter Date</b></div>
+
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+    </div>
+    <form action="/discover" method="post">
+        <div class="row" style="padding-bottom: 2px">
+            <div class="col">
+                <input type="text" name="cname" value="" />
+            </div>
+
+            <div class="col">
+                <input type="text" name="disease_code" value="" />
+            </div>
+
+            <div class="col">
+                <input type="text" name="first_enc_date" value="" />
+            </div>
+
+            <div class="col-2">
+                <button
+                    type="submit"
+                    class="btn btn-outline-success btn-block"
+                    value="insert"
+                    name="action"
+                >
+                    Insert
+                </button>
+            </div>
+        </div>
+    </form>
+    {% for row in rows %}
+    <form action="/discover" method="post">
+        <div class="row" style="padding-bottom: 2px">
+            <div class="col">
+                <input type="hidden" name="oldRow" value="{{row}}" />
+                <input type="text" name="cname" value="{{row['cname']}}" />
+            </div>
+
+            <div class="col">
+                <input
+                    type="text"
+                    name="disease_code"
+                    value="{{row['disease_code']}}"
+                />
+            </div>
+
+            <div class="col">
+                <input
+                    type="text"
+                    name="first_enc_date"
+                    value="{{row['first_enc_date']}}"
+                />
+            </div>
+
+            <div class="col-1" style="padding-right: 10px">
+                <button
+                    type="submit"
+                    class="btn btn-outline-primary btn-block"
+                    value="edit"
+                    name="action"
+                >
+                    Edit
+                </button>
+            </div>
+
+            <div class="col-1" style="padding-left: 5px">
+                <button
+                    type="submit"
+                    class="btn btn-outline-danger"
+                    
+                    value="delete"
+                    name="action"
+                >
+                    Delete
+                </button>
+            </div>
+        </div>
+    </form>
+    {% endfor %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block content %}
+<h2>Doctor Table</h2>
+
+<div class="container">
+    <div class="row" style="padding-bottom: 10px; padding-top: 20px">
+        <div class="col"><b>Email</b></div>
+        <div class="col"><b>Degree</b></div>
+
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+    </div>
+    <form action="/doctor" method="post">
+        <div class="row" style="padding-bottom: 2px">
+            <div class="col">
+                <input type="text" name="email" value="" />
+            </div>
+
+            <div class="col">
+                <input type="text" name="degree" value="" />
+            </div>
+
+            <div class="col-2">
+                <button
+                    type="submit"
+                    class="btn btn-outline-success btn-block"
+                    value="insert"
+                    name="action"
+                >
+                    Insert
+                </button>
+            </div>
+        </div>
+    </form>
+    {% for row in rows %}
+    <form action="/doctor" method="post">
+        <div class="row" style="padding-bottom: 2px">
+            <div class="col">
+                <input type="hidden" name="oldEmail" value="{{row['email']}}" />
+                <input type="text" name="email" value="{{row['email']}}" />
+            </div>
+
+            <div class="col">
+                <input
+                    type="text"
+                    name="degree"
+                    value="{{row['degree']}}"
+                />
+            </div>
+
+            <div class="col-1" style="padding-right: 10px">
+                <button
+                    type="submit"
+                    class="btn btn-outline-primary btn-block"
+                    value="edit"
+                    name="action"
+                >
+                    Edit
+                </button>
+            </div>
+
+            <div class="col-1" style="padding-left: 5px">
+                <button
+                    type="submit"
+                    class="btn btn-outline-danger"
+                    
+                    value="delete"
+                    name="action"
+                >
+                    Delete
+                </button>
+            </div>
+        </div>
+    </form>
+    {% endfor %}
+</div>
+
+{% endblock content %}

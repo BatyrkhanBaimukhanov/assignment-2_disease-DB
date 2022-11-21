@@ -1,0 +1,134 @@
+{% extends "layout.html" %} {% block content %}
+<h2>Users Table</h2>
+
+<div class="container">
+    <div class="row" style="padding-bottom: 10px; padding-top: 20px">
+        <div class="col-2"><b>Email</b></div>
+        <div class="col-2"><b>Name</b></div>
+        <div class="col-2"><b>Surname</b></div>
+        <div class="col-1"><b>Salary</b></div>
+        <div class="col-2"><b>Phone</b></div>
+        <div class="col-1"><b>Country</b></div>
+
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+    </div>
+    <form action="/users" method="post">
+        <div class="row" style="padding-bottom: 2px">
+            <div class="col-2">
+                <input type="text" name="email" value="" style="box-sizing: border-box; width: 100%"/>
+            </div>
+
+            <div class="col-2">
+                <input type="text" name="name" value="" style="box-sizing: border-box; width: 100%"/>
+            </div>
+
+            <div class="col-2">
+                <input type="text" name="surname" value="" style="box-sizing: border-box; width: 100%"/>
+            </div>
+
+            <div class="col-1">
+                <input type="text" name="salary" value="" style="box-sizing: border-box; width: 100%"/>
+            </div>
+
+            <div class="col-2">
+                <input type="text" name="phone" value="" style="box-sizing: border-box; width: 100%"/>
+            </div>
+
+            <div class="col-1">
+                <input type="text" name="cname" value="" style="box-sizing: border-box; width: 100%"/>
+            </div>
+
+            <div class="col-2">
+                <button
+                    type="submit"
+                    class="btn btn-outline-success btn-block"
+                    value="insert"
+                    name="action"
+                >
+                    Insert
+                </button>
+            </div>
+        </div>
+    </form>
+    {% for row in rows %}
+    <form action="/users" method="post">
+        <div class="row" style="padding-bottom: 2px">
+            <div class="col-2">
+                <input type="hidden" name="oldRow" value="{{row}}" />
+                <input type="text" name="email" value="{{row['email']}}" style="box-sizing: border-box; width: 100%"/>
+            </div>
+
+            <div class="col-2">
+                <input
+                    type="text"
+                    name="name"
+                    value="{{row['name']}}"
+                    style="box-sizing: border-box; width: 100%"
+                />
+            </div>
+
+            <div class="col-2">
+                <input
+                    type="text"
+                    name="surname"
+                    value="{{row['surname']}}"
+                    style="box-sizing: border-box; width: 100%"
+                />
+            </div>
+
+            <div class="col-1">
+                <input
+                    type="text"
+                    name="salary"
+                    value="{{row['salary']}}"
+                    style="box-sizing: border-box; width: 100%"
+                />
+            </div>
+
+            <div class="col-2">
+                <input
+                    type="text"
+                    name="phone"
+                    value="{{row['phone']}}"
+                    style="box-sizing: border-box; width: 100%"
+                />
+            </div>
+
+            <div class="col-1">
+                <input
+                    type="text"
+                    name="cname"
+                    value="{{row['cname']}}"
+                    style="box-sizing: border-box; width: 100%"
+                />
+            </div>
+
+            <div class="col-1" style="padding-right: 10px">
+                <button
+                    type="submit"
+                    class="btn btn-outline-primary btn-block"
+                    value="edit"
+                    name="action"
+                >
+                    Edit
+                </button>
+            </div>
+
+            <div class="col-1" style="padding-left: 5px">
+                <button
+                    type="submit"
+                    class="btn btn-outline-danger"
+                    
+                    value="delete"
+                    name="action"
+                >
+                    Delete
+                </button>
+            </div>
+        </div>
+    </form>
+    {% endfor %}
+</div>
+
+{% endblock content %}
